@@ -1,5 +1,83 @@
 <div class="container-fluid section-banner bg-grandient-2 section-table">
     <div class="content-middle">
-       <h1 ShadowTitle>TOODO SOBRE FORMULARIOS VALIDACIONES</h1>
+       <h1 ShadowTitle class="text-uppercase" >EJEMPLO De una APP de tareas </h1>
     </div>
-   </div>
+</div>
+<div class="container">
+        <div class="row row-space">
+            <div class="col-md-4">
+                <h4>{{nameLists}}</h4>
+                <ul class="list-group" *ngIf="Lists.length;else ListNull;" >
+                    <a  class="list-group-item" [class.special]="i==0" (click)="editOneList(x)" *ngFor="let x of Lists; let i=index">{{x.id}} -- {{x.name}}</a>
+                </ul>
+                <br>
+                <ng-template #ListNull>No Hay Tareas por Realizar</ng-template>
+                <br>
+                <div class="text-center">
+                    <a class="btn btn-primary text-center text-white " (click)="addNote()">AGREGAR NUEVA NOTA</a>    
+                </div>
+            </div>
+            <div class="col-md-8 align-center text-center" [hidden]="!show_form">
+                <h4>Nuevas Notas</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <form #formCreateNote='ngForm' (ngSubmit)="onSubmit(formCreateNote)">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <label for="{{nameList}}">Nombre</label>
+                                    <input type="text" name="nameList" class="form-control" [(ngModel)]="formCreateNote.nameList" required>
+                                </div>
+    
+                                <div class="col-lg-3">
+                                    <label for="{{CostList}}">Costo</label>
+                                    <input type="number" name="CostList" class="form-control" [(ngModel)]="formCreateNote.CostList" required>
+                                </div>
+    
+                            </div>
+                            <label for="{{descriptionList}}">Descripción</label>
+                            <textarea [(ngModel)]="formCreateNote.descriptionList" name="descriptionList" class="form-control" required maxlength="20">
+                                
+                            </textarea>
+                            <input type="submit" value="Save" class="btn btn-primary form-control">
+                            <br>
+                            <input type="button" name="" value="Clear Form" (click)="cancel()" class="btn btn-warning form-control">
+                        </form>
+    
+    
+    
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="col-md-8 align-center text-center" [hidden]="!show_form_edit">
+                <h4>Editar Lista {{nameListEdit}}</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <form #formEditNote='ngForm' (ngSubmit)="onSubmitEdit(formEditNote)">
+                            <div class="row">
+                                <input type="hidden" name="id" class="form-control" [(ngModel)]="editList.id">
+                                <div class="col-lg-8">
+                                    <label for="{{name}}">Nombre</label>
+                                    <input type="text" name="name" class="form-control" [(ngModel)]="editList.name" required>
+                                </div>
+    
+                                <div class="col-lg-3">
+                                    <label for="{{cost}}">Costo</label>
+                                    <input type="number" name="cost" class="form-control" [(ngModel)]="editList.cost" required>
+                                </div>
+    
+                            </div>
+                            <label for="{{description}}">Descripción</label>
+                            <textarea [(ngModel)]="editList.description" name="description" class="form-control" required maxlength="20">
+                                
+                            </textarea>
+                            
+                              <br>
+                            <input type="button" name="" value="Eliminar Nota" (click)="cancelEditOneList(editList.id)" class="btn btn-danger form-control">
+                        </form>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,8 +1,73 @@
 <div class="container-fluid section-banner bg-grandient-home section-table">
- <div class="content-middle">
-    <h1 ShadowTitle>EXAMPLE BÁSICO USO DEL ROUTER EN ANGULAR 4/5/6</h1>
- </div>
+    <div class="content-middle">
+        <h1 ShadowTitle>EXAMPLE BÁSICO USO DEL ROUTER EN ANGULAR 4/5/6</h1>
+    </div>
 </div>
-<div class="container-fluid section-full">
+<div *ngIf="!Mantenimiento;else evenClicked">
+    <div class="container-fluid">
+        <div class="row row-featured" *ngFor="let item of AngularDefinition">
+            <div class="col-md-4 img-feature-full img-angular"></div>
+            <div class="col-md-8 content-feature div-table">
+                <div class="middle-center">
+                    <h2 class="text-uppercase">{{item.title}}</h2>
+                    <p [innerHtml]="item.paragraph1"></p>
+                    <ul class="" *ngFor="let x of item.list">
+                        <li class="">{{x}}</li>
+                    </ul>
+                    <p [innerHtml]="item.paragraph2"></p>
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" *ngIf="FeaturesAngular">
+        <div class="row row-space">
+            <div class="col-md-12 div-card-simple" *ngFor="let feature of FeaturesAngular">
+                <div class="card border-primary mb-3">
+                    <div class="card-header">
+                            <h3>{{feature.title}}</h3>
+                        
+                    </div>
+                    <div class="card-body">
+                        <p [innerHTML]="feature.paragraph"></p>
+                       
+                    </div>
+
+                    <ul class="list-group list-group-flush"  *ngFor="let item of feature.list">
+                            <li class="list-group-item">{{item}}</li>
+                    </ul>
+                    <div class="card-footer">
+                           {{feature.titlehref}} <a name="btnlink" id="" target="_blank" class="btn btn-link" href="{{feature.href}}" role="button">{{feature.link}}</a>
+                           
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-space">
+                <div class="col-md-12 div-card-simple" >
+                    <div class="card border-dark mb-3">
+                        <div class="card-header">
+                            <h3>Comienza ya!</h3>
+                        </div>
+                        <div class="card-body">
+                                Visita la Pitaya Digital y encuentra un tutorial práctico de Angular 4/5/6 con un ejemplo avanzando donde aprenderás todo sobre como crear una Arquitectura Frontend para una APlicación web professional y eficiente.
+                           
+                        </div>
+    
+                        <div class="card-footer">
+                              <a name="" id="" target="" class="btn btn-dark" href="" role="button">Quiero el Tutorial</a>
+                               
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <blockquote class="blockquote">
+                <p class="mb-0"></p>
+
+              </blockquote>
+    </div>
+    
 </div>
+
+
+<ng-template #evenClicked class="section-full">Estamos en Mantenimiento!!!</ng-template>

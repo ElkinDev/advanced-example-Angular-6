@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+    font-family:   "Helvetica Neue", Arial, sans-serif,
+}
 body{
     padding:0;margin:0;
     width:100%;
@@ -27,6 +30,35 @@ body{
 .bg-grandient-2 h1,h2,h3,h4{color:white;}
 .bg-grandient-3{background-image: linear-gradient(to bottom, #95c25e, #47a975, #008a81, #136876, #2f4858);}
 .bg-grandient-3 h1,h2,h3,h4{color:white;}
+.row-featured .img-feature-full{height:100vh%;background-size:cover;min-height:500px;}
+.img-angular{
+    background: url(assets/angular.png) no-repeat center center ;background-size:cover;
+}
+.row-space{
+    margin:50px 0;
+}
+.row-featured .content-feature{
+    height:100vh;min-height:500px;
+}
+.div-table{
+    display:table;
+}
+.middle-center{
+    vertical-align:middle;
+    display:table-cell;
+    padding:0 50px;
+}
+.div-card-simple{
+    margin-bottom:20px;
+}
+
+a{
+    cursor: pointer;
+}
+.list-group-custom .list-group-item:first-child{
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
 @media only screen and (min-width : 1200px) {
 
     .container { max-width: 1024px !important; } 
