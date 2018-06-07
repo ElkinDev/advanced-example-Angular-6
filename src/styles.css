@@ -30,9 +30,9 @@ body{
 .bg-grandient-2 h1,h2,h3,h4{color:white;}
 .bg-grandient-3{background-image: linear-gradient(to bottom, #95c25e, #47a975, #008a81, #136876, #2f4858);}
 .bg-grandient-3 h1,h2,h3,h4{color:white;}
-.row-featured .img-feature-full{height:100vh%;background-size:cover;min-height:500px;}
+.row-featured .img-feature-full{height:100vh;background-size:cover;min-height:500px;}
 .img-angular{
-    background: url(assets/angular.png) no-repeat center center ;background-size:cover;
+    /* background: url(assets/angular.png) no-repeat center center ;background-size:cover; */
 }
 .row-space{
     margin:50px 0;
@@ -55,9 +55,20 @@ body{
 a{
     cursor: pointer;
 }
-.list-group-custom .list-group-item:first-child{
+.list-group .list-group-item:first-child{
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+.list-group-item:hover{
+    transition: all 0.3s ease-in 0.2s !important;
+    background-color:#2f4858 !important;
+    color:#fff !important;
+    
+    
+}
+.list-group-item{
+    transition: all 0.1s ease-in 0.1s !important;
+    
 }
 @media only screen and (min-width : 1200px) {
 

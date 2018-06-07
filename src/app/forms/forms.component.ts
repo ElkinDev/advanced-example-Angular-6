@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ListTareas } from '../list-tareas';
 
 
 @Component({
@@ -15,14 +16,22 @@ export class FormsComponent {
   numberspage = 5 + 'a'
   title = 'Creador de Notas';
   nameLists = 'Lista de Tareas Pendientes';
+
+  //Creando Lista con Clases
   Lists = [
-    { id: 1, name: 'Tarea one', description: 'This is description 1', cost: 5000 },
-    { id: 2, name: 'Tarea Two', description: 'This is description 2', cost: 5000 },
-    { id: 3, name: 'Tarea Three', description: 'This is description 3', cost: 5000 },
-    { id: 5, name: 'Tarea1 For', description: 'This is description 4', cost: 5000 },
-    { id: 6, name: 'Tarea2 For', description: 'This is description 5', cost: 5000 },
-    { id: 7, name: 'Tarea3 For', description: 'This is description 6', cost: 5000 },
-    { id: 8, name: 'Tarea5 For', description: 'This is description 7', cost: 1111 },
+    new ListTareas(1, 'Tarea one', 'This is description 1', 100),
+    new ListTareas(2, 'Tarea Two', 'This is description 2', 200),
+    new ListTareas(3, 'Tarea three', 'This is description 3', 300),
+    new ListTareas(4, 'Tarea four', 'This is description 4', 400),
+    new ListTareas(5, 'Tarea five', 'This is description 5', 500),
+    new ListTareas(6, 'Tarea six', 'This is description 6', 600),
+    new ListTareas(7, 'Tarea eight', 'This is description 7', 700),
+    new ListTareas(8, 'Tarea nine', 'This is description 8', 800),
+    new ListTareas(9, 'Tarea then', 'This is description 9', 900),
+    new ListTareas(10, 'Tarea eleven', 'This is description 10', 500),
+    new ListTareas(11, 'Tarea twelve', 'This is description 12', 500),
+    new ListTareas(12, 'Tarea seven', 'This is description 13', 600),
+
   ];
   newlist = { id: null, name: null, description: null, cost: 0 }
   editList = { id: null, name: null, description: null, cost: 0 }
@@ -40,14 +49,14 @@ export class FormsComponent {
     this.show_form = false
   }
   onSubmit(formCreateNote: NgForm) {
-    console.log('se metioooo 2')
+    console.log('se metioooo 2', __filename)
 
     this.show_form_edit = false;
-    this.newlist.id = Math.floor(Math.random() * 588) + 615,
-      this.newlist.name = formCreateNote.value.nameList,
-      this.newlist.description = formCreateNote.value.descriptionList,
-      this.newlist.cost = formCreateNote.value.CostList,
-      this.Lists.push(this.newlist)
+    this.newlist.id = Math.floor(Math.random() * 588) + 615
+    this.newlist.name = formCreateNote.value.nameList
+    this.newlist.description = formCreateNote.value.descriptionList
+    this.newlist.cost = formCreateNote.value.CostList
+    this.Lists.push(new ListTareas(this.newlist.id, this.newlist.name, this.newlist.description,this.newlist.cost))
     this.newlist = { id: null, name: null, description: null, cost: 0 }
     formCreateNote.reset()
     this.show_form = false

@@ -8,7 +8,7 @@
             <div class="col-md-4">
                 <h4>{{nameLists}}</h4>
                 <ul class="list-group" *ngIf="Lists.length;else ListNull;" >
-                    <a  class="list-group-item" [class.special]="i==0" (click)="editOneList(x)" *ngFor="let x of Lists; let i=index">{{x.id}} -- {{x.name}}</a>
+                    <a  class="list-group-item"   [class.special]="i==0" (click)="editOneList(x)" *ngFor="let x of Lists; let i=index">{{x.id}} -- {{x.name}}</a>
                 </ul>
                 <br>
                 <ng-template #ListNull>No Hay Tareas por Realizar</ng-template>
