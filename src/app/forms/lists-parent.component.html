@@ -1,0 +1,7 @@
+<h4>{{nameLists}}</h4>
+<ul class="list-group" *ngIf="ListsRes.length;else ListNull;" >
+        <list-child [class.special]="i==0" *ngFor="let nota of ListsRes; let i=index" [nota]="nota" [title]='nameLists' ></list-child>
+    
+</ul>
+<br>
+<ng-template #ListNull>No Hay Tareas por Realizar</ng-template>
