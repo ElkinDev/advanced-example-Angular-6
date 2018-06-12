@@ -6,10 +6,11 @@
 <div class="container">
     <div class="row row-space">
         <div class="col-md-4">
-            <ul class="list-group" *ngIf="ListsRes.length;else ListNull;">
+            <div *ngIf="ListsRes.length;else ListNull;">
                 <list-child (click)="editOneList(nota)" *ngFor="let nota of ListsRes; let i=index" [nota]="nota" [title]='nameLists'></list-child>
 
-            </ul>
+            </div>
+            <ng-template #ListNull>No hay Ninguna Tarea- Crea una nueva!!</ng-template>
             <div class="text-center">
                 <a class="btn btn-primary text-center text-white " (click)="addNote()">AGREGAR NUEVA NOTA</a>
             </div>
@@ -21,21 +22,30 @@
                     <form #formCreateNote='ngForm' (ngSubmit)="onSubmit(formCreateNote)">
                         <div class="row">
                             <div class="col-lg-8">
-                                <label for="{{nameList}}">Nombre</label>
+                                <label>Nombre</label>
                                 <input type="text" name="nameList" class="form-control" [(ngModel)]="formCreateNote.nameList" required>
                             </div>
 
                             <div class="col-lg-3">
-                                <label for="{{CostList}}">Costo</label>
+                                <label>Costo</label>
                                 <input type="number" name="CostList" class="form-control" [(ngModel)]="formCreateNote.CostList" required>
                             </div>
 
                         </div>
-                        <label for="{{descriptionList}}">Descripción</label>
+                        <label for="{{formCreateNote.descriptionList}}">Descripción</label>
                         <textarea [(ngModel)]="formCreateNote.descriptionList" name="descriptionList" class="form-control" required maxlength="20">
                                 
-                            </textarea>
+                        </textarea>
+
+                        <div class="form-group">
+                          <label for="">Prioridad</label>
+                          <select class="form-control" name="Priority" id="Priority" [(ngModel)]="formCreateNote.priority">
+                                <option  *ngFor="let item of prioritys" [value]="item.priority">{{item.priority}}</option>
+                            
+                          </select>
+                        </div>
                         <input type="submit" value="Save" class="btn btn-primary form-control">
+                        <br>
                         <br>
                         <input type="button" name="" value="Clear Form" (click)="cancel()" class="btn btn-warning form-control">
                     </form>
@@ -50,27 +60,32 @@
             <h4>Editar Lista {{nameListEdit}}</h4>
             <div class="card">
                 <div class="card-body">
-                    <form #formEditNote='ngForm' (ngSubmit)="onSubmitEdit(formEditNote)">
+                    <form #formEditNote='ngForm' (ngSubmit)="onSubmitEdit(editList)">
                         <div class="row">
                             <input type="hidden" name="id" class="form-control" [(ngModel)]="editList.id">
                             <div class="col-lg-8">
-                                <label for="{{name}}">Nombre</label>
+                                <label for="{{editList.name}}">Nombre</label>
                                 <input type="text" name="name" class="form-control" [(ngModel)]="editList.name" required>
                             </div>
 
                             <div class="col-lg-3">
-                                <label for="{{cost}}">Costo</label>
+                                <label for="{{editList.cost}}">Costo</label>
                                 <input type="number" name="cost" class="form-control" [(ngModel)]="editList.cost" required>
                             </div>
 
                         </div>
-                        <label for="{{description}}">Descripción</label>
+                        <label for="{{editList.description}}">Descripción</label>
                         <textarea [(ngModel)]="editList.description" name="description" class="form-control" required maxlength="20">
                                 
-                            </textarea>
-
+                        </textarea>
                         <br>
-                        <input type="button" name="" value="Eliminar Nota" (click)="cancelEditOneList(editList.id)" class="btn btn-danger form-control">
+                        <div class="form-group">
+                                <label for="">Prioridad</label>
+                                <select class="form-control" name="Priority" id="Priority" [(ngModel)]="editList.priority">
+                                      <option  *ngFor="let item of prioritys" [selected]="editList.priority===item.priority" [value]="item.priority">{{item.priority}}</option>
+                                  
+                                </select>
+                              </div>
                     </form>
                 </div>
 

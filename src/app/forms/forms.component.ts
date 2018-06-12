@@ -1,42 +1,47 @@
 import { Component, OnChanges, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ListTareas, Lists } from '../list-tareas';
+import { ListTareas, Lists, constanst } from '../list-tareas';
 import { ListTareasService } from '../list-tareas.service';
-
+import { Subscriber } from 'rxjs';
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
   styleUrls: ['./forms.component.css'],
-  providers:[ListTareasService]
-  
+  providers: [ListTareasService]
+
 })
 export class FormsComponent implements OnInit {
-
   constructor(
-    private _ListTareasService:ListTareasService
+    private _ListTareasService: ListTareasService
   ) { }
-  public formEditNote: any = {};
+  formEditNote: NgForm
   formCreateNote: NgForm
   numberspage = 5 + 'a'
   title = 'Creador de Notas';
   nameLists = 'Lista de Tareas Pendientes';
-  newlist = { id: null, name: null, description: null, cost: 0 }
-  editList = { id: null, name: null, description: null, cost: 0 }
+  newlist = { id: null, name: null, description: null, cost: 0, priority: null }
+  editList = { id: null, name: null, description: null, cost: 0, priority: null }
   show_form = false
   show_form_edit = false
   nameListEdit = null
   cacheList = null
   ListsRes
-  ngOnInit():void{
-    this.ListsRes=Lists
-    console.log('see metioooo',this.ListsRes.length)
+  prioritys = constanst
+
+  ngOnInit(): void {
+    this.ListsRes = Lists
+    console.log('see metioooo', this.ListsRes.length)
   }
 
-  editOneList(nota){
+  editOneList(nota) {
     this._ListTareasService.setNoteEditList(nota)
-}
+    this.cacheList = nota
+    this.show_form = false
+    this.show_form_edit = true
+    this.editList = nota
+  }
   addNote() {
-    this.newlist = { id: null, name: null, description: null, cost: 0 }
+    this.newlist = { id: null, name: null, description: null, cost: 0, priority: null }
     this.show_form_edit = false;
     this.show_form ? this.show_form = false : this.show_form = true
   }
@@ -50,22 +55,23 @@ export class FormsComponent implements OnInit {
     this.newlist.name = formCreateNote.value.nameList
     this.newlist.description = formCreateNote.value.descriptionList
     this.newlist.cost = formCreateNote.value.CostList
-    Lists.push(new ListTareas(this.newlist.id, this.newlist.name, this.newlist.description, this.newlist.cost))
-    this.newlist = { id: null, name: null, description: null, cost: 0 }
-    formCreateNote.reset()
-    this.show_form = false
+    this.newlist.priority = formCreateNote.value.Priority || 'Sin Conocer'
+    var CreatedList = this._ListTareasService.addNota(new ListTareas(this.newlist.id, this.newlist.name, this.newlist.description, this.newlist.cost, this.newlist.priority))
+    if (CreatedList) {
+      console.log(CreatedList, 'veaaamos')
+      this.newlist = { id: null, name: null, description: null, cost: 0, priority: null }
+      formCreateNote.reset()
+      this.show_form = false
+    }else{
+      console.log('no creadppp')
+    }
+
   }
-  public doSomething(data){
-    this.cacheList = data
-    this.show_form = false
-    this.show_form_edit = true
-    this.editList = data
-    console.log('compa hasta aqui llegamos,',data)
+  onSubmitEdit(formEditNote: NgForm) {
   }
 
   saveEditOneList(data) {
-    console.log('veaamoslo', this.formCreateNote)
-    
+
   }
   cancelEditOneList(idlistDAta) {
     Lists.forEach((e, i) => {
@@ -78,9 +84,7 @@ export class FormsComponent implements OnInit {
 
     })
   }
-  onChanges():void{
-    console.log('entra entraa?')
-  }
+
 
 
 

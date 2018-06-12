@@ -35,8 +35,9 @@ export class ListTareasService {
   //////// Save methods //////////
 
   /** POST: add a new hero to the server */
-  addNota() {
-
+  addNota(nota:ListTareas) {
+    Lists.push(new ListTareas(nota.id, nota.name, nota.description, nota.cost, nota.priority))
+    return true;
   }
 
   /** DELETE: delete the hero from the server */
