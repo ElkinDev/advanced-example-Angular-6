@@ -60,7 +60,7 @@ a{
     border-top-right-radius: 0 !important;
 }
 .list-group-item:hover{
-    transition: all 0.3s ease-in 0.2s !important;
+    transition: all 0.1s ease-in 0.1s !important;
     background-color:#2f4858 !important;
     color:#fff !important;
     
