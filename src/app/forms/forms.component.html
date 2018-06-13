@@ -6,14 +6,16 @@
 <div class="container">
     <div class="row row-space">
         <div class="col-md-4">
+                <div class="text-center">
+                        <a class="btn btn-primary text-center text-white " (click)="addNote()">AGREGAR NUEVA NOTA</a>
+                    </div>
+                    <br>
             <div *ngIf="ListsRes.length;else ListNull;">
                 <list-child (click)="editOneList(nota)" *ngFor="let nota of ListsRes; let i=index" [nota]="nota" [title]='nameLists'></list-child>
 
             </div>
             <ng-template #ListNull>No hay Ninguna Tarea- Crea una nueva!!</ng-template>
-            <div class="text-center">
-                <a class="btn btn-primary text-center text-white " (click)="addNote()">AGREGAR NUEVA NOTA</a>
-            </div>
+            
         </div>
         <div class="col-md-8 align-center text-center" [hidden]="!show_form">
             <h4>Nuevas Notas</h4>

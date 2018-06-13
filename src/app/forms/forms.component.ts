@@ -39,6 +39,8 @@ export class FormsComponent implements OnInit {
     this.show_form = false
     this.show_form_edit = true
     this.editList = nota
+    window.scrollTo(0, 450)
+
   }
   addNote() {
     this.newlist = { id: null, name: null, description: null, cost: 0, priority: null }
